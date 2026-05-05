@@ -12,7 +12,7 @@ pipeline {
         stage('Test Backend') {
             steps {
                 sh """
-                cd backend
+              
                 pip install -r requirements.txt
                 pytest
                 """
