@@ -12,7 +12,7 @@ pipeline {
         stage('Test Backend') {
             steps {
                 sh """
-                cd cicd-app/backend
+                cd backend
                 pip install -r requirements.txt
                 pytest
                 """
@@ -30,10 +30,10 @@ pipeline {
         stage('Build & Push') {
             steps {
                 sh """
-                docker build -t $BACKEND_IMAGE ./cicd-app/backend
+                docker build -t $BACKEND_IMAGE ./backend
                 docker push $BACKEND_IMAGE
 
-                docker build -t $FRONTEND_IMAGE ./cicd-app/frontend
+                docker build -t $FRONTEND_IMAGE ./frontend
                 docker push $FRONTEND_IMAGE
                 """
             }
