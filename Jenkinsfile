@@ -8,31 +8,32 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                credentialsId: 'github-ssh',
-                url: 'git@github.com:Rajesh1187/cicd-app.git'
-            }
-        }
 
         stage('Test Backend') {
             steps {
                 sh """
-                cd backend
+                cd cicd-app/backend
                 pip install -r requirements.txt
                 pytest
                 """
             }
         }
 
+        stage('Docker Login') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh 'echo $PASS | docker login -u $USER --password-stdin'
+                }
+            }
+        }
+
         stage('Build & Push') {
             steps {
                 sh """
-                docker build -t $BACKEND_IMAGE ./backend
+                docker build -t $BACKEND_IMAGE ./cicd-app/backend
                 docker push $BACKEND_IMAGE
 
-                docker build -t $FRONTEND_IMAGE ./frontend
+                docker build -t $FRONTEND_IMAGE ./cicd-app/frontend
                 docker push $FRONTEND_IMAGE
                 """
             }
