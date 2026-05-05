@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh """
               
-                pip install -r requirements.txt
+                pip install -r backend/requirements.txt
                 pytest
                 """
             }
