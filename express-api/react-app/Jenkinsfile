@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Rajesh1187/react-app.git'
+            }
+        }
+
+        stage('Build React') {
+            steps {
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t react-app:latest .'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                sh '''
+                docker rm -f react-app || true
+                docker run -d -p 8082:80 react-app
+                '''
+            }
+        }
+    }
+}

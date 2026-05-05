@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Rajesh1187/node-api.git'
+            }
+        }
+
+        stage('Install & Test') {
+            steps {
+                sh 'npm install'
+                sh 'npm test || true'
+            }
+        }
+
+        stage('Build Docker') {
+            steps {
+                sh 'docker build -t node-api:latest .'
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                sh '''
+                docker rm -f node-api || true
+                docker run -d -p 3000:3000 node-api
+                '''
+            }
+        }
+    }
+}
