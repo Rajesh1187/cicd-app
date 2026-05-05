@@ -1,22 +1,0 @@
-
------------------
-DIRB v2.22    
-By The Dark Raver
------------------
-
-START_TIME: Sat Apr 26 04:03:17 2025
-URL_BASE: http://pre-loan.oto.com/
-WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
-
------------------
-
-*** Generating Wordlist...                                                                               GENERATED WORDS: 4612
-
----- Scanning URL: http://pre-loan.oto.com/ ----
-*** Calculating NOT_FOUND code...                                                                               
-(!) FATAL: Too many errors connecting to host
-    (Possible cause: RECV ERROR)
-                                                                               
------------------
-END_TIME: Sat Apr 26 04:03:17 2025
-DOWNLOADED: 0 - FOUND: 0
