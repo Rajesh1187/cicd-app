@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: rajesh1187/cicd-backend:latest   # replace dynamically
+        image: rajesh1187/cicd-backend:PLACEHOLDER   # replace dynamically
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
