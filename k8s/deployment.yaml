@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-clean
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cicd-clean
+  template:
+    metadata:
+      labels:
+        app: cicd-clean
+    spec:
+      containers:
+      - name: cicd-clean
+        image: rajesh1187/cicd-clean:1
+        ports:
+        - containerPort: 5000
