@@ -39,5 +39,17 @@ pipeline {
                 """
             }
         }
+	stage('Deploy to Kubernetes') {
+    steps {
+        sh """
+        kubectl set image deployment/backend backend=$BACKEND_IMAGE
+        kubectl set image deployment/frontend frontend=$FRONTEND_IMAGE
+
+        kubectl rollout status deployment/backend
+        kubectl rollout status deployment/frontend
+        """
+    }
+}
+
     }
 }
