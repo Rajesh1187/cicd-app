@@ -7,9 +7,10 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/Rajesh1187/cicd-k8s-manifests.git
-    targetRevision: main
-    path: k8s
+  repoURL: https://github.com/Rajesh1187/cicd-k8s-manifests.git
+  targetRevision: main
+  path: k8s
+  kustomize: {}
 
   destination:
     server: https://kubernetes.default.svc
