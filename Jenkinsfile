@@ -14,7 +14,7 @@ pipeline {
                 sh """
               
                 pip install -r backend/requirements.txt
-                pytest
+                python3 -m pytest backend/tests
                 """
             }
         }
