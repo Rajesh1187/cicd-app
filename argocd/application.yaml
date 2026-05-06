@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: git@github.com:Rajesh1187/cicd-k8s-manifests.git
+    repoURL: https://github.com/Rajesh1187/cicd-k8s-manifests.git
     targetRevision: main
     path: k8s
 
