@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         IMAGE_TAG = "${BUILD_NUMBER}"
-        BACKEND_IMAGE = "Rajesh1187/cicd-backend:${IMAGE_TAG}"
-        FRONTEND_IMAGE = "Rajesh1187/cicd-frontend:${IMAGE_TAG}"
+        BACKEND_IMAGE = "rajesh1187/cicd-backend:${IMAGE_TAG}"
+        FRONTEND_IMAGE = "rajesh1187/cicd-frontend:${IMAGE_TAG}"
     }
 
     stages {
