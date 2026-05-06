@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: Rajesh1187/cicd-backend:latest
+        image: rajesh1187/cicd-backend:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000

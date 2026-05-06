@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_TAG = "${BUILD_NUMBER}"
+IMAGE_TAG = "latest"
+        #IMAGE_TAG = "${BUILD_NUMBER}"
         BACKEND_IMAGE = "rajesh1187/cicd-backend:${IMAGE_TAG}"
         FRONTEND_IMAGE = "rajesh1187/cicd-frontend:${IMAGE_TAG}"
     }
