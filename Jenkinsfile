@@ -36,24 +36,28 @@ pipeline {
         }
 
         stage('Update GitOps Repo (AUTO DEPLOY TRIGGER)') {
-            steps {
-                sshagent(['github-ssh-key']) {
-                    sh '''
-                    git clone $K8S_REPO repo
-                    cd repo
+    steps {
+        sshagent(['github-ssh-key']) {
+            sh '''
+            rm -rf repo
+            git clone $K8S_REPO repo
+            cd repo
 
-                    sed -i "s|rajesh1187/cicd-backend:.*|$BACKEND_IMAGE|g" k8s/backend-deployment.yaml
-                    sed -i "s|rajesh1187/cicd-frontend:.*|$FRONTEND_IMAGE|g" k8s/frontend-deployment.yaml
+            # Replace backend image
+            sed -i "s|image: .*cicd-backend.*|image: $BACKEND_IMAGE|g" k8s/backend-deployment.yaml
 
-                    git config user.email "jenkins@ci.com"
-                    git config user.name "jenkins"
+            # Replace frontend image
+            sed -i "s|image: .*cicd-frontend.*|image: $FRONTEND_IMAGE|g" k8s/frontend-deployment.yaml
 
-                    git add .
-                    git commit -m "Auto deploy build $BUILD_NUMBER"
-                    git push origin main
-                    '''
-                }
-            }
+            git config user.email "jenkins@ci.com"
+            git config user.name "jenkins"
+
+            git add .
+            git commit -m "Auto deploy build $BUILD_NUMBER" || echo "No changes"
+            git push origin main
+            '''
         }
     }
+}
+}
 }
