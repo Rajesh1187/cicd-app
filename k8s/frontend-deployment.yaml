@@ -15,6 +15,6 @@ spec:
       containers:
       - name: frontend
         image: rajesh1187/cicd-frontend:latest
-        imagePullPolicy: Always
         ports:
         - containerPort: 80
+        imagePullPolicy: Always
